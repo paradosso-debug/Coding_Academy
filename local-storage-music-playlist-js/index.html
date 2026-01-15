@@ -1,12 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Custom Music Playlist Builder</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Build Your Vibe Playlist</h1>
+      <button id="toggleModeBtn">Dark Mode</button>
+      <form id="songForm">
+        <label for="title">Song Title</label>
+        <input type="text" id="title" required />
 
-</head>
-<body>
+        <label for="arist">Artist</label>
+        <input type="text" id="artist" required />
 
-</body>
+        <label for="link">Song Link</label>
+        <input
+          type="url"
+          id="link"
+          placeholder="Add your youtube link"
+          required
+        />
+
+        <label for="mood">Mood</label>
+        <select id="mood" required>
+          <option value="">Select a Mood</option>
+          <option value="chill">Chill</option>
+          <option value="hype">Hype</option>
+          <option value="romantic">Romantic</option>
+          <option value="sad">Sad</option>
+        </select>
+
+        <button type="submit">Add Song</button>
+      </form>
+      <label for="filterMood">Filter by Mood</label>
+      <select id="filterMood">
+        <option value="all">All</option>
+        <option value="chill">Chill</option>
+        <option value="hype">Hype</option>
+        <option value="romantic">Romantic</option>
+        <option value="sad">Sad</option>
+      </select>
+      <button id="shuffleBtn">Shuffle Playlist</button>
+      <div id="playlist" class="playlist-container"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
