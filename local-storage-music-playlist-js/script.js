@@ -21,6 +21,12 @@ const toggleModeBtn = document.getElementById("toggleModeBtn"); // Dark mode tog
 // - Then update the playlist array with the parsed data
 function loadPlaylist() {
   const saved = localStorage.getItem("customPlaylist");
+  if (saved) {
+    playlist = JSON.parse(saved);
+    console.log(playlist);
+  } else {
+    console.log("No playlist found in localStorage");
+  }
 }
 
 //  Step 4: Function to save the playlist into localStorage
@@ -28,6 +34,10 @@ function loadPlaylist() {
 // Inside the function:
 // - Use JSON.stringify() to convert the playlist array to a string
 // - Use localStorage.setItem() to save it with the key "customPlaylist"
+
+function savePlaylist() {
+  localStorage.setItem("customPlaylist", JSON.stringify(playlist));
+}
 
 //  Step 5: Function to render the songs onto the screen
 //  Define a function called renderPlaylist(songsToRender)
@@ -44,6 +54,24 @@ function loadPlaylist() {
 //       - a delete button with a data-index attribute
 //    4. Append the new div to the playlist container
 //
+
+function renderPlaylist(songsToRender) {
+  playlistContainer.innerHTML = "";
+  songsToRender.forEach((song, index) => {
+    const card = document.createElement("div");
+    card.classList.add("song-card");
+
+    card.innerHTML = ` <strong>${song.title}</strong><br>
+    <em>Artist:</em> ${song.arist}<br>
+    <em>Mood:</em> ${song.modd}<br>
+    <a href="${song.link}" target="_blank"> Listen</a><br>
+    <button class="delete-btn" data-index ${index}"> Delete</button>
+    
+    `;
+    playlistContainer.appendChild(card);
+  });
+}
+
 // 🧹 Then, after the forEach loop:
 // - Use document.querySelectorAll(".delete-btn") to get all delete buttons
 // - Loop through them and add a click event listener to each:
@@ -51,6 +79,17 @@ function loadPlaylist() {
 //    → Remove the song from the playlist array using splice()
 //    → Save the updated playlist
 //    → Re-render the playlist again
+
+const deleteButtons = document.querySelectorAll(".delete-btn");
+
+deleteButtons.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    const index = this.getAttribute("data-index");
+    playlist.splice(index, 1);
+    savePlaylist();
+    renderPlaylist(playlist);
+  });
+});
 
 // ➕ Step 6: Function to handle adding a new song
 // 👉 Define a function called addSong(e)
@@ -64,6 +103,21 @@ function loadPlaylist() {
 // - Call renderPlaylist(playlist)
 // - Use songForm.reset() to clear the form
 
+function addSong(e) {
+  e.preventDefault();
+  const newSong = {
+    title: titleInput.value.trim(),
+    artist: artistInput.value.trim(),
+    mood: moodSelect.value.trim(),
+    link: linkInput.value.trim(),
+  };
+
+  playlist.push(newSong);
+  savePlaylist();
+  renderPlaylist(playlist);
+  songForm.requestFullscreen();
+}
+
 // 🎯 Step 7: Filter playlist by mood
 // 👉 Define a function called filterPlaylist()
 // Inside the function:
@@ -71,6 +125,16 @@ function loadPlaylist() {
 // - If it’s "all", call renderPlaylist(playlist)
 // - Otherwise, use .filter() to get only songs that match the mood
 // - Then call renderPlaylist(filtered)
+
+function filterPlaylist() {
+  const selectMood = filterMoodSelect.value;
+  if (selectMood === "all") {
+    renderPlaylist(playlist);
+  } else {
+    const filtered = playlist.filter((song) => song.mood === selectMood);
+    renderPlaylist(filtered);
+  }
+}
 
 // 🔀 Step 8: Shuffle the playlist using Fisher-Yates algorithm
 // 👉 Define a function called shufflePlaylist()
