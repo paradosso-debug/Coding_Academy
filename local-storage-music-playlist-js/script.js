@@ -62,34 +62,34 @@ function renderPlaylist(songsToRender) {
     card.classList.add("song-card");
 
     card.innerHTML = ` <strong>${song.title}</strong><br>
-    <em>Artist:</em> ${song.arist}<br>
-    <em>Mood:</em> ${song.modd}<br>
+    <em>Artist:</em> ${song.artist}<br>
+    <em>Mood:</em> ${song.mood}<br>
     <a href="${song.link}" target="_blank"> Listen</a><br>
-    <button class="delete-btn" data-index ${index}"> Delete</button>
+    <button class="delete-btn" data-index="${index}"> Delete</button>
     
     `;
     playlistContainer.appendChild(card);
   });
-}
 
-// 🧹 Then, after the forEach loop:
-// - Use document.querySelectorAll(".delete-btn") to get all delete buttons
-// - Loop through them and add a click event listener to each:
-//    → Get the song index from data-index
-//    → Remove the song from the playlist array using splice()
-//    → Save the updated playlist
-//    → Re-render the playlist again
+  // 🧹 Then, after the forEach loop:
+  // - Use document.querySelectorAll(".delete-btn") to get all delete buttons
+  // - Loop through them and add a click event listener to each:
+  //    → Get the song index from data-index
+  //    → Remove the song from the playlist array using splice()
+  //    → Save the updated playlist
+  //    → Re-render the playlist again
 
-const deleteButtons = document.querySelectorAll(".delete-btn");
+  const deleteButtons = document.querySelectorAll(".delete-btn");
 
-deleteButtons.forEach((btn) => {
-  btn.addEventListener("click", function () {
-    const index = this.getAttribute("data-index");
-    playlist.splice(index, 1);
-    savePlaylist();
-    renderPlaylist(playlist);
+  deleteButtons.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const index = this.getAttribute("data-index");
+      playlist.splice(index, 1);
+      savePlaylist();
+      renderPlaylist(playlist);
+    });
   });
-});
+}
 
 // ➕ Step 6: Function to handle adding a new song
 // 👉 Define a function called addSong(e)
@@ -115,7 +115,7 @@ function addSong(e) {
   playlist.push(newSong);
   savePlaylist();
   renderPlaylist(playlist);
-  songForm.requestFullscreen();
+  songForm.reset();
 }
 
 // 🎯 Step 7: Filter playlist by mood
@@ -144,6 +144,16 @@ function filterPlaylist() {
 // - Swap playlist[i] and playlist[j] using destructuring
 // - After the loop, save and render the playlist again
 
+function shufflePlaylist() {
+  for (let i = playlist.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [playlist[i], playlist[j]] = [playlist[j], playlist[i]];
+  }
+  savePlaylist();
+  renderPlaylist(playlist);
+}
+
 // 🌙 Step 9: Toggle between Dark Mode and Light Mode
 // 👉 Define a function called toggleDarkMode()
 // Inside the function:
@@ -152,12 +162,27 @@ function filterPlaylist() {
 // - Update toggle button text accordingly ("Light Mode" or "Dark Mode")
 // - Save the theme preference in localStorage (key = "theme")
 
+function toggleDarkMode() {
+  document.body.classList.toggle("dark");
+  const isDark = document.body.classList.contains("dark");
+  toggleModeBtn.textContent = isDark ? "Light Mode" : "Dark Mode";
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+}
+
 // 💡 Step 10: Load the saved theme from localStorage
 // 👉 Define a function called loadTheme()
 // Inside the function:
 // - Use getItem("theme") from localStorage
 // - If it’s "dark", add the "dark" class to body and update toggle button text
 // - Otherwise, keep the default (light) theme
+
+function loadTheme() {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+    toggleModeBtn.textContent = "Light Mode";
+  }
+}
 
 // 🎯 Step 11: Add event listeners to buttons and form
 // 👉 Add the following event listeners:
@@ -166,8 +191,17 @@ function filterPlaylist() {
 // - shuffleBtn "click" → shufflePlaylist
 // - toggleModeBtn "click" → toggleDarkMode
 
+songForm.addEventListener("submit", addSong);
+filterMoodSelect.addEventListener("change", filterPlaylist);
+shuffleBtn.addEventListener("click", shufflePlaylist);
+toggleModeBtn.addEventListener("click", toggleDarkMode);
+
 // 🚀 Step 12: Initialize the app
 // 👉 Call the following functions:
 // - loadPlaylist()
 // - renderPlaylist(playlist)
 // - loadTheme()
+
+loadPlaylist();
+renderPlaylist(playlist);
+loadTheme();
