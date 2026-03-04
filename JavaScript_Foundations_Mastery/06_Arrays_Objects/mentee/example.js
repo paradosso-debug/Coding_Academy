@@ -1,3 +1,7 @@
+const button = document.getElementById("btn");
+
+button.addEventListener("click", () => {});
+
 const contacts = [
   { name: "Tony", phone: "555-555-555", isfavorite: false },
   { name: "Mika", phone: "555-555-222", isfavorite: true },

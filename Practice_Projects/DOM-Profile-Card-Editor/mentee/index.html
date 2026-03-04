@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Card Editor</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="header">
+        <h1>Profile Card Editor</h1>
+        <p class="sub">Practice DOM updates + UI state (View vs Edit)</p>
+      </header>
+
+      <section class="grid">
+        <!-- VIEW CARD -->
+        <div class="card" id="viewCard">
+          <h2 style="margin: 0">Profile</h2>
+          <div class="kv">
+            <div><b>Name:</b> <span id="displayName">Ari</span></div>
+            <div>
+              <b>Status:</b>
+              <span id="displayStatus" class="badge available">Available</span>
+            </div>
+            <div class="muted"><b>Bio:</b></div>
+            <div id="displayBio" class="muted">
+              Building projects and leveling up my DOM skills.
+            </div>
+          </div>
+
+          <div class="btnRow">
+            <button id="editBtn">Edit</button>
+          </div>
+        </div>
+
+        <!-- EDIT FORM -->
+        <div class="card" id="editCard">
+          <h2 style="margin: 0">Edit Profile</h2>
+
+          <!-- We use a form so "Save" can be a submit -->
+          <form id="profileForm">
+            <div class="field">
+              <label for="nameInput">Name</label>
+              <input id="nameInput" type="text" />
+            </div>
+
+            <div class="field">
+              <label for="statusSelect">Status</label>
+              <select id="statusSelect">
+                <option value="available">Available</option>
+                <option value="busy">Busy</option>
+                <option value="focus">Focus</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="bioInput">Bio</label>
+              <textarea id="bioInput"></textarea>
+            </div>
+
+            <div class="btnRow">
+              <button type="submit" id="saveBtn">Save</button>
+              <button type="button" id="cancelBtn">Cancel</button>
+            </div>
+
+            <p class="small muted" style="margin: 10px 0 0 0">
+              Tip: Cancel should NOT change the profile card.
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
