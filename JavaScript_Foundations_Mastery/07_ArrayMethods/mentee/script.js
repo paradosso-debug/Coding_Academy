@@ -23,6 +23,23 @@
 
 // STEP 7: Log the final state of the fruits array.
 
+const fruits = ["Apple", "Orange", "Dragon Fruit"];
+console.log(fruits);
+
+fruits.push("Strawberry");
+console.log("After push method", fruits);
+
+fruits.unshift("Pineapple");
+console.log("After unshift method", fruits);
+
+const removedLastFruit = fruits.pop();
+console.log("Remove last fruit", removedLastFruit);
+
+const removedFirstFruit = fruits.shift();
+console.log("Remove first fruit", removedFirstFruit);
+
+console.log("Final state of the fruits array", fruits);
+
 // ==============================================
 // TASK 2 – FOREACH: SAY HELLO TO EACH ITEM
 // ==============================================
@@ -31,6 +48,12 @@
 
 // STEP 9: Use .forEach() to log a message for each mentee, for example:
 //         "Hello, (name)! Ready to code?"
+
+const mentees = ["Alren", "David", "Jocelin"];
+
+mentees.forEach((name) => {
+  console.log(`Hello, ${name}! Ready to code?`);
+});
 
 // ==============================================
 // TASK 3 – MAP: TRANSFORM VALUES
@@ -51,6 +74,12 @@
 
 // STEP 14: Log labeledNumbers.
 
+const numbers = [2, 4, 6, 8];
+
+const doubledNumbers = numbers.map((number) => number * 2);
+console.log("Original array of numbers", numbers);
+console.log("New array - doubled numbrs", doubledNumbers);
+
 // ==============================================
 // TASK 4 – FILTER: KEEP ONLY SOME VALUES
 // ==============================================
@@ -67,3 +96,11 @@
 //          that only keeps numbers that are even (number % 2 === 0).
 
 // STEP 19: Log evenNumbers.
+
+const mixedNumbers = [3, 10, 7, 20, 15, 2];
+
+const bigNumbers = mixedNumbers.filter((number) => number >= 10);
+console.log("Big numbers", bigNumbers);
+
+const evenNumbers = mixedNumbers.filter((number) => number % 2 === 0);
+console.log("Even numbers", evenNumbers);
