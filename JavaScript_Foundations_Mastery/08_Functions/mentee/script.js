@@ -18,6 +18,9 @@
 // STEP 0.1: Refresh the page after every change.
 //           You should see your console logs again.
 //
+
+console.log("Hello World");
+
 // ==============================================
 // TASK 1 – YOUR FIRST FUNCTION (DECLARATION)
 // ==============================================
@@ -38,6 +41,15 @@
 //
 // STEP 4: Call (run) the function by writing:
 //         sayHello();
+
+function sayHello() {
+  console.log("Hello from a function!");
+}
+
+console.log("About to call sayHello..");
+
+sayHello();
+
 //
 // ==============================================
 // TASK 2 – PARAMETERS (INPUTS) + ARGUMENTS (VALUES)
@@ -53,6 +65,19 @@
 // STEP 5: Call greetUser 3 times with different names as arguments.
 //
 // STEP 6: Add labels so you can clearly see which call is which.
+
+function greetUser(userName) {
+  console.log("Hi," + userName);
+}
+console.log("greetUser 1");
+greetUser("Maya");
+
+console.log("greetUser 2");
+greetUser("John");
+
+console.log("greetUser 3");
+greetUser("Hanna");
+
 //
 // ==============================================
 // TASK 3 – RETURN VALUES (OUTPUTS)
@@ -72,6 +97,16 @@
 // STEP 10: Try calling addTwoNumbers without storing it, like:
 //          console.log(addTwoNumbers(10, 5));
 //
+
+function addTwoNumbers(a, b) {
+  return a + b;
+}
+
+const total = addTwoNumbers(3, 7);
+
+console.log("Total =", total);
+
+console.log("addTwoNumbers(10,5) =", addTwoNumbers(10, 5));
 // ==============================================
 // TASK 4 – FUNCTION EXPRESSION (FUNCTION INSIDE A VARIABLE)
 // ==============================================
@@ -90,6 +125,20 @@
 //          Observe the error.
 //          Then put the call back AFTER the definition.
 //          (This is a preview of "hoisting" differences.)
+
+const sayBye = function () {
+  console.log("Bye");
+};
+
+sayBye();
+
+// Hoisting
+// sayHi();
+
+// function sayHi() {
+//   console.log("Hi");
+// }
+
 //
 // ==============================================
 // TASK 5 – ARROW FUNCTIONS (MODERN SYNTAX)
@@ -110,6 +159,18 @@
 //          It returns a string like: "first last"
 //
 // STEP 17: console.log(makeFullName("Riley", "Kim"));
+
+const multiply = (x, y) => {
+  return x * y;
+};
+console.log("Multiply", multiply(4, 4));
+
+const makeFullName = (first, last) => {
+  return first + " " + last;
+};
+
+console.log("Full Name", makeFullName("Riley", "Gina"));
+
 //
 // ==============================================
 // TASK 6 – CALLBACKS (FUNCTIONS PASSED INTO FUNCTIONS)
@@ -127,6 +188,20 @@
 //
 // STEP 20: Call runTwice again but this time pass an arrow function that logs:
 //          "Again!"
+
+function runTwice(callback) {
+  callback();
+  callback();
+}
+
+runTwice(function () {
+  console.log("Running!");
+});
+
+runTwice(() => {
+  console.log("Again");
+});
+
 //
 // ==============================================
 // TASK 7 – MINI “REAL LIFE” EXAMPLE: FORMATTER
@@ -142,6 +217,14 @@
 //          (Hint: use priceNumber.toFixed(2))
 //
 // STEP 22: Test it with console.log using 3 different numbers.
+
+function formatPrice(priceNumber) {
+  return "$" + priceNumber.toFixed(2);
+}
+
+console.log("Format the price 11 =", formatPrice(11));
+console.log("Format the price 1.2 =", formatPrice(1.2));
+console.log("Format the price 55.79996 =", formatPrice(55.79996));
 //
 // ==============================================
 // TASK 8 – QUICK PREVIEW: “FUNCTIONS POWER DOM”
@@ -158,3 +241,13 @@
 // STEP 23: Write a console.log message (just text) that explains in your own words:
 //          "A callback is a function passed into another function."
 //
+
+console.log("A callback is a function passed into another function.");
+
+// Functions that control loading.
+
+function isLoading() {
+  document.getElementById("example").textContent = " Is Loading";
+}
+
+isLoading();
