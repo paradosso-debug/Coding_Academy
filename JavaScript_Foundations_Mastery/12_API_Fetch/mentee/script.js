@@ -13,7 +13,6 @@
 // - Using "count=1" forces the API to return a RANDOM photo.
 // - When using "count", the API returns an ARRAY, not an object.
 //
-
 // ==============================================
 // SETUP – SELECT ELEMENTS
 // ==============================================
@@ -30,7 +29,6 @@ const adviceBtn = document.getElementById("adviceBtn");
 const adviceText = document.getElementById("adviceText");
 const catFactBtn = document.getElementById("catFactBtn");
 const catFactText = document.getElementById("catFactText");
-const spaceBtn = document.getElementById("activityBtn");
 const spaceText = document.getElementById("activityText");
 // ==============================================
 // TASK 1 – RANDOM ADVICE
@@ -51,7 +49,8 @@ const spaceText = document.getElementById("activityText");
 //                like "Could not load advice. Try again."
 
 adviceBtn.addEventListener("click", () => {
-  adviceText.textContent = "Loading advice...";
+  adviceText.textContent = "Loading advice..";
+
   fetch("https://api.adviceslip.com/advice")
     .then((response) => {
       return response.json();
@@ -63,7 +62,7 @@ adviceBtn.addEventListener("click", () => {
 
     .catch((error) => {
       console.error(error);
-      adviceText.textContent = "Could not load advice";
+      adviceText.textContent = "Could not load advice. Try again.";
     });
 });
 
@@ -86,6 +85,7 @@ adviceBtn.addEventListener("click", () => {
 
 catFactBtn.addEventListener("click", () => {
   catFactText.textContent = "Loading cat fact...";
+
   fetch("https://catfact.ninja/fact")
     .then((response) => {
       return response.json();
@@ -94,9 +94,10 @@ catFactBtn.addEventListener("click", () => {
       const fact = data.fact;
       catFactText.textContent = fact;
     })
+
     .catch((error) => {
       console.error(error);
-      catFactText.textContent = "Couldn not load cat fact";
+      catFactText.textContent = "Something went wrong";
     });
 });
 
@@ -144,42 +145,3 @@ catFactBtn.addEventListener("click", () => {
 //         - Log the error to the console.
 //         - Set spaceText.textContent to a friendly message like:
 //           "Could not load the space photo. Try again later."
-
-spaceBtn.addEventListener("click", () => {
-  spaceText.innerHTML = "Loading space photo..";
-
-  const apiURL = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=1";
-
-  fetch(apiURL)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("NASA request faiiled");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      const apod = data[0];
-
-      if (apod.media_type === "video") {
-        spaceText.innerHTML = `
-            <h3>${apod.title}</h3>
-            <p> ${apod.explanation}</p>
-            <a href= "${apod.url}" target="_blank"> Open The Space Video</a>
-            `;
-      } else {
-        spaceText.innerHTML = `
-             <h3>${apod.title}</h3>
-             <img src="${apod.url}" alt="${apod.title}"
-             style="max-width: 100%; border-radius: 12px"
-             />
-              <p> ${apod.explanation}</p>
-           
-            `;
-      }
-    })
-
-    .catch((error) => {
-      console.error(error);
-      spaceText.textContent = "Could not load space photo";
-    });
-});
