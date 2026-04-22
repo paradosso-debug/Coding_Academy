@@ -29,6 +29,7 @@ const adviceBtn = document.getElementById("adviceBtn");
 const adviceText = document.getElementById("adviceText");
 const catFactBtn = document.getElementById("catFactBtn");
 const catFactText = document.getElementById("catFactText");
+const spaceBtn = document.getElementById("activityBtn");
 const spaceText = document.getElementById("activityText");
 // ==============================================
 // TASK 1 – RANDOM ADVICE
@@ -145,3 +146,49 @@ catFactBtn.addEventListener("click", () => {
 //         - Log the error to the console.
 //         - Set spaceText.textContent to a friendly message like:
 //           "Could not load the space photo. Try again later."
+
+spaceBtn.addEventListener("click", () => {
+  spaceText.innerHTML = "Loading space photo...";
+
+  const apodUrl =
+    "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=1";
+
+  fetch(apodUrl)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("NASA request failed");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const apod = data[0];
+
+      if (apod.media_type === "video") {
+        spaceText.innerHTML = `
+        <h3>${apod.title}</h3>
+        <p>${apod.explanation}</p>
+        <a href="${apod.url}" target="_blank">Open the space video</a>
+        
+        `;
+      } else {
+        spaceText.innerHTML = `
+           <h3>${apod.title}</h3>
+           <img src="${apod.url}" alt="${apod.title}"
+           style="max-width: 100%; border-radius: 12px;"/>
+          <p>${apod.explanation}</p>
+
+        `;
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      spaceText.textContent = "Could not load Space video or photo..";
+    });
+});
+
+// fetch("api",{
+//   method: "POST"
+//   headers:{
+//     "Content-Type": "application/json"
+//   },
+// })
