@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iTunes Music Vault</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="app-shell">
+        <header class="hero">
+          <div class="badge">Axios + localStorage Music App</div>
+          <h1>iTunes Music Vault</h1>
+          <p class="subtitle">
+            Search songs with the iTunes API, preview tracks, save favorites,
+            and keep your playlist after refresh
+          </p>
+        </header>
+        <div class="controls">
+          <input
+            id="searchInput"
+            class="input"
+            type="text"
+            placeholder="Search artist, song, or album..."
+          />
+
+          <select id="limitSelect" class="select">
+            <option value="8">8 Results</option>
+            <option value="12">12 Results</option>
+            <option value="20">20 Results</option>
+          </select>
+          <button id="searchBtn" class="btn primary-btn" type="button">
+            Search
+          </button>
+        </div>
+
+        <p id="statusText" class="status">
+          Type a search term and press Search
+        </p>
+
+        <section class="dashboard">
+          <div class="panel results-panel">
+            <div class="panel-heading">
+              <h2>Search Results</h2>
+            </div>
+            <div id="resultGrid" class="grid"></div>
+          </div>
+
+          <aside class="panel playlist-panel">
+            <div class="panel-heading row-heading">
+              <h2>My Saved Playlist</h2>
+              <p>Saved with localStorage</p>
+
+              <button id="clearPlaylistBtn" class="btn small-btn" type="button">
+                Clear
+              </button>
+            </div>
+            <p id="playlistCount" class="counter">0 saved songs</p>
+            <div id="playlistGrid" class="playlist-list"></div>
+          </aside>
+        </section>
+
+        <section class="recent-panel">
+          <div class="panel-heading row-heading">
+            <div>
+              <h2>Recent Searches</h2>
+              <p>Click one to search again</p>
+            </div>
+
+            <button id="clearRecentBtn" class="btn small-btn" type="button">
+              Clear Recent
+            </button>
+          </div>
+
+          <div id="recentSearches" class="chips"></div>
+        </section>
+        <footer class="footer">Axios API + DOM + localStorage</footer>
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
