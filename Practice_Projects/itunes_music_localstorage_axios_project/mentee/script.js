@@ -47,3 +47,67 @@ function createSafeSongObject(song) {
     collectionName: song.collectionName || "Unknown Album",
   };
 }
+
+function renderSongs(songs) {
+  clearResults();
+  songs.forEach((song) => {
+    const safeSong = createSafeSongObject(song);
+    const card = documentElement("div");
+    card.classList.add("song-card");
+
+    const image = document.createElement("img");
+    image.classList.add("cover");
+    image.src = safeSong.artworkUrl100.replace("100x100", "400x400");
+    image.alt = `${safeSong.trackName} cover art`;
+
+    const title = document.createElement("p");
+    title.classList.add("song-title");
+    title.textContent = safeSong.trackName;
+
+    const artist = document.createElement("p");
+    artist.classList.add("song-artist");
+    artist.textContent = `${safeSong.artistName} - ${safeSong.collectionName}`;
+
+    const actions = document.createElement("div");
+    actions.classList.add("card-actions");
+    previewLink.textContent = "Preview";
+
+    const previewLink = document.createElement("a");
+    previewLink.classList.add("action-link");
+    previewLink.href = safeSong.previewUrl || "#";
+    previewLink.target = "_blank";
+    previewLink.rel = "noopener noreferrer";
+
+    const saveButton = document.createElement("button");
+    saveButton.classList.add("save-btn");
+    saveButton.type = "button";
+    saveButton.textContent = "♡ Save";
+
+    saveButton.addEventListener("click", () => {
+      saveSong(safeSong);
+    });
+    actions.appendChild(previewLink);
+    actions.appendChild(saveButton);
+
+    card.appendChild(image);
+    card.appendChild(title);
+    card.appendChild(artist);
+    card.appendChild(actions);
+
+    resultsGrid.appendChild(card);
+  });
+}
+
+function renderPlaylist() {
+  playlistGrid.innerHTML = "";
+  playlistCount.textContent = `${savedPlaylist.length} saved song${savedPlaylist.length === 1 ? "" : "s"}`;
+
+  if (savedPlaylist.length === 0) {
+    const emptyMessage = document.createElement("p");
+    emptyMessage.classList.add("empty-message");
+    emptyMessage.textContent =
+      "No saved songs yet. Search for music and click Save to build your playlist";
+    playlistGrid.appendChild(emptyMessage);
+    return;
+  }
+}
