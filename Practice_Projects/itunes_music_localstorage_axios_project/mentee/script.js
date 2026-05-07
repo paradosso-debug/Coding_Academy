@@ -111,3 +111,78 @@ function renderPlaylist() {
     return;
   }
 }
+
+savedPlaylist.forEach((song) => {
+  const card = document.createElement("div");
+  card.classList.add("saved-card");
+
+  const image = document.createElement("img");
+  image.classList.add("cover");
+  image.src = song.artworkUrl100.replace("100x100", "400x400");
+  image.alt = `${song.trackName} cover art`;
+
+  const info = document.createElement("p");
+  info.classList.add("saved-info");
+
+  const title = document.createElement("p");
+  title.classList.add("song-title");
+  title.textContent = song.trackName;
+
+  const artist = document.createElement("p");
+  artist.classList.add("song-artist");
+  artist.textContent = song.artistName;
+
+  const actions = document.createElement("div");
+  actions.classList.add("saved-actions");
+
+  const previewLink = document.createElement("a");
+  previewLink.classList.add("action-link");
+  previewLink.href = song.previewUrl || "#";
+  previewLink.target = "_blank";
+  previewLink.rel = "noopener noreferrer";
+  previewLink.textContent = "Preview";
+
+  const removeButton = document.createElement("button");
+  removeButton.classList.add("remove-btn");
+  removeButton.type = "button";
+  removeButton.textContent = "Remove";
+
+  removeButton.addEventListener("click", () => {
+    removeSong(song.trackId);
+  });
+
+  actions.appendChild(previewLink);
+  actions.appendChild(removeButton);
+
+  info.appendChild(title);
+  info.appendChild(artist);
+  info.appendChild(actions);
+
+  card.appendChild(image);
+  card.appendChild(info);
+
+  playlistGrid.appendChild(card);
+});
+
+function saveSong(song) {
+  const alreadySaved = savedPlaylist.some(
+    (savedSong) => savedSong.trackId === song.trackId,
+  );
+  if (alreadySaved) {
+    statusText.textContent = `"${song.trackName}" is already in your playlist`;
+    return;
+  }
+
+  savedPlaylist.push(song);
+  saveToStorage(PLAYLIST_KEY, savedPlaylist);
+  renderPlaylist();
+  statusText.textContent = `Saved "${song.trackName}" to your playlist`;
+}
+
+function removeSong(trackId) {
+  savedPlaylist = savedPlaylist.filter((song) => {
+    song.trackId !== trackId;
+    saveToStorage(PLAYLIST_KEY, savedPlaylist);
+    renderPlaylist();
+  });
+}
