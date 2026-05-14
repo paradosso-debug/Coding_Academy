@@ -1,51 +1,73 @@
-// VARIABLES
+// BASIC VARIABLES
 
-// Basic Variables
+let firstName = "Matt";
 
-let firstName = "John";
 let age = 33;
-let favoriteColor = "Blue";
 
-console.log(firstName, age, favoriteColor);
+let faviteColor = "Gold";
+
+console.log(firstName);
+console.log(age);
+console.log(faviteColor);
 
 console.log(
-  "My Name is " +
+  "My name is " +
     firstName +
     ", I am " +
     age +
-    "years old, and my favorite color is " +
-    favoriteColor +
+    " years old, and my favorite color is " +
+    faviteColor +
     ".",
 );
 
-// Reassigment with let variable
-
+//REASSIGMENT WITH let
 let currentColor = "Blue";
 
-console.log("At first, my fav color was " + currentColor + ".");
+console.log("At first, my favorite color was " + currentColor + ".");
 
 currentColor = "Red";
 
-console.log("Now my new favorite color is " + currentColor + ".");
+console.log("Now my favorite color is " + currentColor + ".");
 
-// Using Template literals
+let userName = "Jayden";
 
-let personName = "Max";
+let userAge = 88;
 
-let personAge = 55;
+let userInfo = `This users name is ${userName} and is ${userAge} years old.`;
 
-let greeting = `Hello, my name is ${personName} and I am ${personAge} years old.`;
-console.log(greeting);
+console.log(userInfo);
 
-// Comparing let & const
+// let VS const
 
-let personMood = "Excited";
-console.log(personMood);
+let mood = "tired";
 
-personMood = "Scared";
-console.log(personMood);
+console.log(mood);
 
-const birthMonth = "April";
-console.log(birthMonth);
+mood = "Happy";
 
-birthMonth = "December";
+console.log(mood);
+
+const birthyear = 1999;
+console.log(birthyear);
+
+// birthyear = 1995;
+// console.log(birthyear);
+
+const fullName = "Jhon Smith";
+const profileAge = 22;
+const country = "Iceland";
+const favoriteHobby = "Tennis";
+let isStudent = true;
+
+console.log("Full Name:", fullName);
+console.log("Age:", profileAge);
+console.log("Country:", country);
+console.log("Favorite Hobby:", favoriteHobby);
+console.log(" Is Student", isStudent);
+
+isStudent = false;
+console.log("Full Name:", fullName);
+console.log("Age:", profileAge);
+console.log("Country:", country);
+console.log("Favorite Hobby:", favoriteHobby);
+console.log(" Is Student", isStudent);

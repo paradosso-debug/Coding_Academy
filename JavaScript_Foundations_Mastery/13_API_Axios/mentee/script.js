@@ -27,15 +27,6 @@
 //         - spaceBtn (id "spaceBtn")
 //         - spaceDisplay (id "spaceDisplay")
 
-const adviceBtn = document.getElementById("adviceBtn");
-const adviceText = document.querySelector("#adviceText");
-
-const catFactBtn = document.getElementById("catFactBtn");
-const catFactText = document.getElementById("catFactText");
-
-const spaceBtn = document.getElementById("spaceBtn");
-const spaceDisplay = document.getElementById("spaceDisplay");
-
 // ==============================================
 // TASK 1 – RANDOM ADVICE (AXIOS + ASYNC/AWAIT)
 // ==============================================
@@ -57,20 +48,6 @@ const spaceDisplay = document.getElementById("spaceDisplay");
 //             * Log the error to the console.
 //             * Set adviceText.textContent to "Could not load advice. Try again.".
 
-adviceBtn.addEventListener("click", async () => {
-  adviceText.textContent = "Loading advice...";
-
-  try {
-    const response = await axios.get("https://api.adviceslip.com/advice");
-
-    const advice = response.data.slip.advice;
-    adviceText.textContent = advice;
-  } catch (error) {
-    console.error(error);
-    adviceText.textContent = "Could not load advice. Try again later..";
-  }
-});
-
 // ==============================================
 // TASK 2 – RANDOM CAT FACT (AXIOS + ASYNC/AWAIT)
 // ==============================================
@@ -91,20 +68,6 @@ adviceBtn.addEventListener("click", async () => {
 //         - Inside catch:
 //             * Log the error.
 //             * Set catFactText.textContent to "Could not load cat fact. Try again.".
-
-catFactBtn.addEventListener("click", async () => {
-  catFactText.textContent = "Loading cat fact...";
-
-  try {
-    const response = await axios.get("https://catfact.ninja/fact");
-    const fact = response.data.fact;
-    catFactText.textContent = fact;
-  } catch (error) {
-    console.error(error);
-    catFactText.textContent =
-      "Could not load cat fact. Please try again later.. ";
-  }
-});
 
 // ==============================================
 // TASK 3 – RANDOM SPACE PHOTO (NASA APOD)
@@ -145,34 +108,3 @@ catFactBtn.addEventListener("click", async () => {
 //             * Log the error.
 //             * Set spaceDisplay.textContent to:
 //               "Could not load space photo. Try again later."
-
-spaceBtn.addEventListener("click", async () => {
-  spaceDisplay.innerHTML = "Loading space/video photo..";
-
-  try {
-    const response = await axios.get(
-      "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=1",
-    );
-    const data = response.data[0];
-
-    if (data.media_type === "image") {
-      spaceDisplay.innerHTML = `
-            <h3>${data.title}</h3>
-            <img 
-            src="${data.url}"
-            alt="${data.title}"
-            style="max-width:100%; border-radius:12px;"/>
-            <p>${data.explanation}</p>
-            `;
-    } else {
-      spaceDisplay.innerHTML = `
-             <h3>${data.title}</h3>
-               <p>${data.explanation}</p>
-               < href="${data.url}" target="_blank"> Open Space Video
-            `;
-    }
-  } catch (error) {
-    console.error(error);
-    spaceDisplay.textContent = "Could not load Space content, Try again later";
-  }
-});

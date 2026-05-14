@@ -29,14 +29,6 @@
 // STEP 7: For each console.log, include a label so you know what you are seeing.
 //         Example idea: console.log("a + b =", a + b);
 
-let a = 10;
-let b = 20;
-console.log("This is addition", a + b);
-console.log("This is subtraction", a - b);
-console.log("This is multiplication", a * b);
-console.log("This division", a / b);
-console.log("This is us using modulus", a % b);
-
 // ==============================================
 // TASK 2 – UPDATING A VALUE OVER TIME
 // ==============================================
@@ -56,13 +48,6 @@ console.log("This is us using modulus", a % b);
 
 // STEP 12: Log the value of savings again with a clear message,
 //          like "After groceries, savings = ..."
-
-let savings = 100;
-savings += 100;
-console.log("After paycheck=", savings);
-
-savings -= 50;
-console.log("After groceries=", savings);
 
 // ==============================================
 // TASK 3 – ORDER OF OPERATIONS
@@ -94,17 +79,3 @@ console.log("After groceries=", savings);
 //          `Base total is: ${baseTotal}`
 
 // STEP 19: Log totalMessage to the console.
-
-let resultOne = 5 + 3 * 2;
-let resultTwo = (5 + 3) * 2;
-
-console.log(resultOne);
-console.log(resultTwo);
-
-let baseTotal = 10 + 5;
-
-console.log("Base total is: " + baseTotal);
-
-let totalMessage = `Base total is: ${baseTotal}`;
-
-console.log(totalMessage);

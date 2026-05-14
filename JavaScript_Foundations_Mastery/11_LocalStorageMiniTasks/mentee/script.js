@@ -12,12 +12,6 @@
 //         - clearNameBtn (id "clearNameBtn")
 //         - savedNameDisplay (id "savedNameDisplay")
 
-const nameInput = document.getElementById("nameInput");
-const saveNameBtn = document.getElementById("saveNameBtn");
-const loadNameBtn = document.getElementById("loadNameBtn");
-const clearNameBtn = document.getElementById("clearNameBtn");
-const savedNameDisplay = document.getElementById("savedNameDisplay");
-
 //
 // STEP 2: Add a "click" event listener to saveNameBtn.
 //         Inside the listener:
@@ -27,16 +21,6 @@ const savedNameDisplay = document.getElementById("savedNameDisplay");
 //         - (Optional) If the input is empty, you can decide not to save
 //           or show a message like "none yet".
 
-saveNameBtn.addEventListener("click", () => {
-  const currentName = nameInput.value;
-
-  if (currentName === "") {
-    savedNameDisplay.textContent = "None Yet";
-    return;
-  }
-
-  localStorage.setItem("savedName", currentName);
-});
 //
 // STEP 3: Add a "click" event listener to loadNameBtn.
 //         Inside the listener:
@@ -45,27 +29,12 @@ saveNameBtn.addEventListener("click", () => {
 //           to "none yet".
 //         - Otherwise, show the saved value in savedNameDisplay.
 
-loadNameBtn.addEventListener("click", () => {
-  const storedName = localStorage.getItem("savedName");
-
-  if (storedName === null) {
-    savedNameDisplay.textContent = "None Yet";
-  } else {
-    savedNameDisplay.textContent = storedName;
-  }
-});
 //
 // STEP 4: Add a "click" event listener to clearNameBtn.
 //         Inside the listener:
 //         - Use localStorage.removeItem("savedName").
 //         - Clear the input (set value to an empty string).
 //         - Set savedNameDisplay.textContent back to "none yet".
-
-clearNameBtn.addEventListener("click", () => {
-  localStorage.removeItem("savedName");
-  nameInput.value = "";
-  savedNameDisplay.textContent = "None yet";
-});
 
 // ==============================================
 // TASK 2 – VISIT COUNTER (RUNS ON PAGE LOAD)
@@ -84,24 +53,6 @@ clearNameBtn.addEventListener("click", () => {
 //
 // STEP 10: Update the textContent of visitCountText (id "visitCountText")
 //          so it shows the current count.
-
-const storedVisitCount = localStorage.getItem("visitCount");
-
-let visitCountValue;
-
-if (storedVisitCount === null) {
-  visitCountValue = 0;
-} else {
-  visitCountValue = storedVisitCount;
-}
-
-visitCountValue = Number(visitCountValue);
-
-visitCountValue = visitCountValue + 1;
-
-localStorage.setItem("visitCount", visitCountValue);
-const visitCountText = document.getElementById("visitCountText");
-visitCountText.textContent = visitCountValue;
 
 // ==============================================
 // TASK 3 – CARD THEME TOGGLE
@@ -133,31 +84,3 @@ visitCountText.textContent = visitCountValue;
 //              * remove "card-dark" class
 //              * update themeStatusText to "light"
 //              * save "light" in localStorage.
-
-const storageCard = document.getElementById("storageCard");
-const toggleThemeBtn = document.getElementById("toggleThemeBtn");
-const themeStatusText = document.getElementById("themeStatusText");
-
-const storedTheme = localStorage.getItem("cardTheme");
-
-if (storedTheme === "dark") {
-  storageCard.classList.add("card-dark");
-  themeStatusText.textContent = "dark";
-} else {
-  storageCard.classList.remove("card-dark");
-  themeStatusText.textContent = "light";
-}
-
-toggleThemeBtn.addEventListener("click", () => {
-  const currentName = localStorage.getItem("cardTheme");
-
-  if (currentName === "dark") {
-    localStorage.setItem("cardTheme", "light");
-    storageCard.classList.remove("card-dark");
-    themeStatusText.textContent = "light";
-  } else {
-    localStorage.setItem("cardTheme", "dark");
-    storageCard.classList.add("card-dark");
-    themeStatusText.textContent = "dark";
-  }
-});

@@ -11,10 +11,6 @@
 // STEP 2: Add a label to your log so it is clear in the console,
 //         for example: "Counting up: 1", "Counting up: 2", etc.
 
-for (let i = 1; i <= 10; i++) {
-  console.log(`Counting up: ${i}`);
-}
-
 // ==============================================
 // TASK 2 – SUM OF NUMBERS
 // ==============================================
@@ -32,14 +28,6 @@ for (let i = 1; i <= 10; i++) {
 //         the final total, for example:
 //         "Sum of numbers from 1 to (maxNumber) is (total)".
 
-let maxNumber = 5;
-let total = 0;
-
-for (let i = 1; i <= maxNumber; i++) {
-  total = total + 1;
-}
-console.log(`Sum of numbers from 1 to ${maxNumber} is ${total}`);
-
 // ==============================================
 // TASK 3 – COUNT DOWN
 // ==============================================
@@ -49,10 +37,6 @@ console.log(`Sum of numbers from 1 to ${maxNumber} is ${total}`);
 
 // STEP 8: On each step, console.log a message like:
 //         "Countdown: 5", "Countdown: 4", etc.
-
-for (let i = 5; i >= 1; i--) {
-  console.log(`Countdown: ${i}`);
-}
 
 // ==============================================
 // TASK 4 – LOOP OVER AN ARRAY
@@ -69,9 +53,3 @@ for (let i = 5; i >= 1; i--) {
 //          "Snack 0: Chips"
 //          "Snack 1: Chocolate"
 //          etc.
-
-let favoriteSnacks = ["Blueberries", "Chips", "Gummies"];
-
-for (let i = 0; i < favoriteSnacks.length; i++) {
-  console.log(`Snack ${i}: ${favoriteSnacks[i]}`);
-}

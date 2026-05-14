@@ -25,12 +25,6 @@
 //         - spaceBtn (id "activityBtn")
 //         - spaceText (id "activityText")
 
-const adviceBtn = document.getElementById("adviceBtn");
-const adviceText = document.getElementById("adviceText");
-const catFactBtn = document.getElementById("catFactBtn");
-const catFactText = document.getElementById("catFactText");
-const spaceBtn = document.getElementById("activityBtn");
-const spaceText = document.getElementById("activityText");
 // ==============================================
 // TASK 1 – RANDOM ADVICE
 // ==============================================
@@ -49,24 +43,6 @@ const spaceText = document.getElementById("activityText");
 //              * Set adviceText.textContent to a friendly error message
 //                like "Could not load advice. Try again."
 
-adviceBtn.addEventListener("click", () => {
-  adviceText.textContent = "Loading advice..";
-
-  fetch("https://api.adviceslip.com/advice")
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      const advice = data.slip.advice;
-      adviceText.textContent = advice;
-    })
-
-    .catch((error) => {
-      console.error(error);
-      adviceText.textContent = "Could not load advice. Try again.";
-    });
-});
-
 // ==============================================
 // TASK 2 – RANDOM CAT FACT
 // ==============================================
@@ -83,24 +59,6 @@ adviceBtn.addEventListener("click", () => {
 //           In the catch:
 //              * Log the error.
 //              * Show a friendly error message in the UI.
-
-catFactBtn.addEventListener("click", () => {
-  catFactText.textContent = "Loading cat fact...";
-
-  fetch("https://catfact.ninja/fact")
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      const fact = data.fact;
-      catFactText.textContent = fact;
-    })
-
-    .catch((error) => {
-      console.error(error);
-      catFactText.textContent = "Something went wrong";
-    });
-});
 
 // ==============================================
 // TASK 3 – RANDOM SPACE PHOTO (NASA APOD)
@@ -146,45 +104,6 @@ catFactBtn.addEventListener("click", () => {
 //         - Log the error to the console.
 //         - Set spaceText.textContent to a friendly message like:
 //           "Could not load the space photo. Try again later."
-
-spaceBtn.addEventListener("click", () => {
-  spaceText.innerHTML = "Loading space photo...";
-
-  const apodUrl =
-    "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=1";
-
-  fetch(apodUrl)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("NASA request failed");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      const apod = data[0];
-
-      if (apod.media_type === "video") {
-        spaceText.innerHTML = `
-        <h3>${apod.title}</h3>
-        <p>${apod.explanation}</p>
-        <a href="${apod.url}" target="_blank">Open the space video</a>
-        
-        `;
-      } else {
-        spaceText.innerHTML = `
-           <h3>${apod.title}</h3>
-           <img src="${apod.url}" alt="${apod.title}"
-           style="max-width: 100%; border-radius: 12px;"/>
-          <p>${apod.explanation}</p>
-
-        `;
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      spaceText.textContent = "Could not load Space video or photo..";
-    });
-});
 
 // fetch("api",{
 //   method: "POST"
