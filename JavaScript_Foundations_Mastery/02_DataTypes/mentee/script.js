@@ -59,3 +59,7 @@ console.log("Person Object:", person, "type: ", typeof person);
 
 let fruits = ["apple", "banana", "orange"];
 console.log("Fruits Array:", fruits, "type: ", typeof fruits);
+
+let products = [];
+
+let prodcuts = ["shoes", "shirt", "pants"];

@@ -29,6 +29,15 @@
 // STEP 7: For each console.log, include a label so you know what you are seeing.
 //         Example idea: console.log("a + b =", a + b);
 
+let a = 10;
+let b = 4;
+
+console.log(a + b);
+console.log(a - b);
+console.log(a * b);
+console.log(a / b);
+console.log(a % b);
+
 // ==============================================
 // TASK 2 – UPDATING A VALUE OVER TIME
 // ==============================================
@@ -49,6 +58,16 @@
 // STEP 12: Log the value of savings again with a clear message,
 //          like "After groceries, savings = ..."
 
+let savings = 100;
+
+savings += 500;
+
+console.log("After the paycheck", savings);
+
+savings -= 200;
+
+console.log("After groceries", savings);
+
 // ==============================================
 // TASK 3 – ORDER OF OPERATIONS
 // ==============================================
@@ -63,6 +82,13 @@
 
 // STEP 15: Log both resultOne and resultTwo with clear messages,
 //          and notice how the answers are different.
+
+let resultOne = 5 + 3 * 2; //11
+
+let resultTwo = (5 + 3) * 2; //16
+
+console.log(resultOne);
+console.log(resultTwo);
 
 // ==============================================
 // TASK 4 – USING + WITH STRINGS
@@ -79,3 +105,42 @@
 //          `Base total is: ${baseTotal}`
 
 // STEP 19: Log totalMessage to the console.
+
+let baseTotal = 10 + 5;
+
+console.log("Base total is: ", baseTotal);
+
+let totalMessage = `Base total is: ${baseTotal}`;
+
+let totalMessage2 = "Base total is: " + baseTotal;
+
+console.log(totalMessage);
+
+console.log(totalMessage2);
+
+let monthlyIncome = 25000;
+
+let rentCost = 9000;
+let foodCost = 3500;
+let transportationCost = 1200;
+let funBudget = 2000;
+
+let totalExpenses = rentCost + foodCost + transportationCost + funBudget;
+
+let moneyLeft = monthlyIncome - totalExpenses;
+
+console.log("----SIMPLE BUDGET----");
+console.log("Monthly Income ", monthlyIncome);
+console.log("Total Expensees ", totalExpenses);
+console.log("Money Left ", moneyLeft);
+
+funBudget += 500;
+
+totalExpenses = rentCost + foodCost + transportationCost + funBudget;
+
+moneyLeft = monthlyIncome - totalExpenses;
+
+console.log("---- UPDATED SIMPLE BUDGET----");
+console.log("Monthly Income ", monthlyIncome);
+console.log("Total Expensees ", totalExpenses);
+console.log("Money Left ", moneyLeft);
