@@ -118,7 +118,7 @@ Beginners often ask what these mean:
 Example:
 
 ```js
-if (age >= 18 && hasTicket === true)
+if (age >= 18 || hasTicket === true)
 ```
 
 ---

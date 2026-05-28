@@ -1,4 +1,4 @@
-# 03 -- Operators
+asz# 03 -- Operators
 
 Operators tell JavaScript **what to do with values**.
 
@@ -22,7 +22,7 @@ Examples:
 ```js
 5 + 3; // returns 8
 wallet - 60; // returns a number
-"Hi " + "Ana"; // returns a string
+"Hi " + "Ana"; // returns a string Hi Ana 
 ```
 
 Operators are used inside expressions to calculate results.
